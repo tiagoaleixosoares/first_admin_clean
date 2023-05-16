@@ -1,0 +1,86 @@
+// Theme Specific Variables
+$primaryColor: #000000;
+$primaryDarkColor: #1E88E5;
+$primaryDarkerColor: #1976D2;
+$primaryTextColor: #28FF52;
+
+$colors: (
+    "blue": #2196F3,
+    "green": #4caf50,
+    "yellow": #FBC02D,
+    "cyan": #00BCD4,
+    "pink": #E91E63,
+    "indigo": #3F51B5,
+    "teal": #009688,
+    "orange": #F57C00,
+    "bluegray": #607D8B,
+    "purple": #9C27B0,
+    "red": #FF4032,
+    "primary": $primaryColor
+);
+
+// Mandatory Designer Variables
+@import './variables/general';
+@import './variables/form';
+@import './variables/button';
+@import './variables/panel';
+@import './variables/_data';
+@import './variables/_overlay';
+@import './variables/_message';
+@import './variables/_menu';
+@import './variables/_media';
+@import './variables/_misc';
+
+:root {
+    --surface-a:#e71616;
+    --surface-b:#1e7cda;
+    --surface-c:#2286eb;
+    --surface-d:#28FF52;
+    --surface-e:#e20b0b;
+    --surface-f:#e42020;
+    //Text Colour
+    --text-color:#28FF52;
+    --text-color-secondary:#A9FFBA;
+    //Text Colour
+    --primary-color:#212E3E;
+    --primary-color-text:#28FF52;
+    --font-family:"FT Base";
+    --surface-0: #212E3E;
+    --surface-50: #424D5B;
+    --surface-100: #d81616;
+    --surface-200: #e21818;
+    --surface-300: #fc1818;
+    --surface-400: #d10e0e;
+    --surface-500: #9E9E9E;
+    --surface-600: #757575;
+    --surface-700: #616161;
+    --surface-800: #424242;
+    --surface-900: #212121;
+    --gray-50: #FAFAFA;
+    --gray-100: #e62727;
+    --gray-200: #e92929;
+    --gray-300: #ff0a0a;
+    --gray-400: #ec2a2a;
+    --gray-500: #b31e1e;
+    --gray-600: #757575;
+    --gray-700: #616161;
+    --gray-800: #424242;
+    --gray-900: #0073ff;
+    --content-padding:#{$panelContentPadding};
+    --inline-spacing:#{$inlineSpacing};
+    --border-radius:#{$borderRadius};
+    //Background central page
+    --surface-ground:#212E3E;
+    --surface-section:#f116e7;
+    //Background Top Header and Cards
+    --surface-card:#424D5B;
+    //Changes background of panel
+    --surface-overlay:#424D5B;
+    --surface-border:#28FF52;
+    --surface-hover:#90979F;
+    --focus-ring: #{$focusShadow};
+    --maskbg: #{$maskBg};
+    --highlight-bg: #{$highlightBg};
+    --highlight-text-color: #{$highlightTextColor};
+    color-scheme: dark;
+}
