@@ -1,8 +1,10 @@
 module.exports = {
 
-    resolve: {
-        fallback: {
-            "fs": false
-        },
-    }
+    externals: [
+        'dtrace-provider',
+        'fs',
+        'mv',
+        'os',
+        'source-map-support',
+      ]
 }
