@@ -31,7 +31,6 @@
     "vue": "*",
     "vue-cookies": "1.8.3",
     "vue-router": "^4.0.0-0",
-    "activedirectory2": "^2.1.0",
-    "ldapjs": "^3.0.2"
+    "activedirectory2": "^2.1.0"
   }
 }
