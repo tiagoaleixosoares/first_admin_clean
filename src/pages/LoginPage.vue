@@ -63,8 +63,8 @@ export default {
                 // tlsOptions: { rejectUnauthorized: false }
                 },
                 adminDn: 'cn=sadtpoweradp01,ou=SISTEMA,dc=edp,dc=pt',
-                adminPassword: 'ReO1357$1',
-                userPassword: 'DIPlogic-1.3',
+                adminPassword: 'pass',
+                userPassword: 'passs',
                 userSearchBase: 'OU=DGU,OU=EDP,DC=edp,DC=pt',
                 usernameAttribute: 'cn',
                 username: 'e346549',
@@ -85,17 +85,19 @@ export default {
             //console.log(authenticate);
             
             const ActiveDirectory = require("activedirectory2");
-
-            console.log(ActiveDirectory);
-            /*
-                       
             var config = { url: 'ldaps://ldaps.edp.pt',
                         baseDN: 'OU=DGU,OU=EDP,DC=edp,DC=pt',
-                        username: 'e346549',
-                        password: 'DIPlogic-1.3' }
+                        username: 'user',
+                        password: 'pass' }
+            var ad = new ActiveDirectory(config);
+            
+            console.log(ad);
+            /*
+                       
+            
             console.log (config)
             
-            var ad = new ActiveDirectory(config);
+            
             
             console.log(ad);
             
