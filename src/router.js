@@ -22,26 +22,6 @@ const routes = [
                 component: () => import('./components/DashboardPage.vue')
             }
         ]
-    },
-    {
-        path: '/landing',
-        name: 'landing',
-        component: () => import('./pages/LandingDemo.vue')
-    },
-    {
-        path: '/error',
-        name: 'error',
-        component: () => import('./pages/ErrorPage.vue')
-    },
-    {
-        path: '/notfound',
-        name: 'notfound',
-        component: () => import('./pages/NotFound.vue')
-    },
-    {
-        path: '/access',
-        name: 'access',
-        component: () => import('./pages/AccessPage.vue')
     }
 ];
 
