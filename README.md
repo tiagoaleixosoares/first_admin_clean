@@ -8,11 +8,11 @@ Goto http://localhost:80
 
 
 # Ver o erro
-1 - Aceder ao link
-2 - Introduzir um user e password (é aleatório)
-3 - Erro acontece
+1. Aceder ao link
+2. Introduzir um user e password (é aleatório)
+3. Erro acontece
 
-4 - PAra ser ver o comportamente inverso (sem erro), basta comentar as linhas 87 e 89 da "LoginPage.vue"
+4. PAra ser ver o comportamente inverso (sem erro), basta comentar as linhas 87 e 89 da "LoginPage.vue"
 
 
 # Reset 
