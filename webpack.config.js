@@ -17,5 +17,12 @@ module.exports = {
         'mv',
         'os',
         'source-map-support',
-      ]
+      ],
+      resolve: {
+        extensions: [ '.ts', '.js', '.vue' ],
+        fallback: {
+            "stream": require.resolve("stream-browserify"),
+            "buffer": require.resolve("buffer")
+        }
+    }
 }
