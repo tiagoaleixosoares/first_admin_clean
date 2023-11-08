@@ -9,6 +9,11 @@ const routes = [
         component: () => import('./pages/LoginPage.vue')
     },
     {
+        path: '/accessdenied',
+        name: 'accessdenied',
+        component: () => import('./pages/AccessDenied.vue')
+    },
+    {
         path: '/',
         name: 'app',
         meta: {
@@ -35,7 +40,6 @@ router.beforeEach((to, from, next) => {
     
     const cookie_name = "pint-user"
 
-    //console.log("Entrei router.js")
     var cookie = VueCookies.get(cookie_name)
     if (cookie == null) {
         VueCookies.set(cookie_name,{
@@ -45,25 +49,13 @@ router.beforeEach((to, from, next) => {
         console.log ("Cookie é null")
     } 
 
-    //console.log(to.name)
-    //console.log (cookie)
-
-    if (cookie.authenticated == false & to.path != '/login' ) {
+    if (cookie.authenticated == false & to.path != '/login' & to.path != '/accessdenied') {
         router.push({ path: '/login' })
     }
-    //else {
-    //    console.log("Entrei router.js2")
-    //    console.log("Usarname é na router.js " + cookie.username)
-    //}
-   /*
-    console.log(to)
-    console.log(from)
-    console.log(next)
-
-    console.log("fim router.js")
-    */
 
     next()
   })
+
+
 
 export default router;

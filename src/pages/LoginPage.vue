@@ -20,10 +20,9 @@
                         </small>
                 
                         <label for="password1" class="block text-900 text-xl font-medium  mb-2">Password</label>
-                        <Password id="password1" v-model="password" placeholder="Password" :toggleMask="true" class="w-full mb-8" inputClass="w-full" >
-                        </Password>
+                        <Password id="password1" v-model="password" placeholder="Password" :toggleMask="true" class="w-full mb-8" inputClass="w-full" :feedback="false"></Password>
                 
-                        <Button label="Sign In" class="w-full p-3 text-xl" @click="doLogin"></button>
+                        <Button label="Sign In" class="w-full p-3 text-xl" @click="doLogin"></Button>
                     </div>
                 </div>
             </div>
@@ -33,16 +32,30 @@
 
 <script>
 
-//const { authenticate } = require('ldap-authentication')
+async function auth(username,password) {
+  
+    var axios = require("axios")
+                
+    const login = {
+        "username": username,
+        "password": password
+    }
+    const headers = { 
+        "Content-Type": "application/json"
+    };
 
-export default {
-    
-    
+    let result_auth;
+    result_auth = await axios.post("http://127.0.0.1:8000/authenticate", login, { headers });
+    return result_auth
+
+}
+
+export default {   
     data() {
         return {
             username: '',
             password: '',
-            checked: false
+            isActive: true
         }
     },
     computed: {
@@ -51,128 +64,35 @@ export default {
             return 'dark';
         }
     },
-    methods: {
-        /*async auth() {
-            console.log ("Entrei ldap")
-            
-            const { authenticate } = require('ldap-authentication')
-            
-            let options = {
-                ldapOpts: {
-                url: 'ldaps://ldaps.edp.pt',
-                // tlsOptions: { rejectUnauthorized: false }
-                },
-                adminDn: 'cn=sadtpoweradp01,ou=SISTEMA,dc=edp,dc=pt',
-                adminPassword: 'pass',
-                userPassword: 'passs',
-                userSearchBase: 'OU=DGU,OU=EDP,DC=edp,DC=pt',
-                usernameAttribute: 'cn',
-                username: 'e346549',
-                // starttls: false
-            }
-
-            let user = await authenticate(options)
-            console.log(user) 
-        },*/
+    methods: { 
       doLogin() {
         if (this.username === "" || this.password === "") {
             this.emptyFields = true;
             return;
         } else {
-            
-
-
-            //console.log(authenticate);
-            
-            const ActiveDirectory = require("activedirectory2");
-            var config = { url: 'ldaps://ldaps.edp.pt',
-                        baseDN: 'OU=DGU,OU=EDP,DC=edp,DC=pt',
-                        username: 'user',
-                        password: 'pass' }
-            var ad = new ActiveDirectory(config);
-            
-            console.log(ad);
-            /*
-                       
-            
-            console.log (config)
-            
-            
-            
-            console.log(ad);
-            
-            var username = 'ola';
-            var password = 'mundo';
-
-            ad.authenticate(username, password, function(err, auth) {
-                if (err) {
-                    console.log('ERROR: '+JSON.stringify(err));
-                    return;
-                }
-                
-                if (auth) {
-                    console.log('Authenticated!');
-                }
-                else {
-                    console.log('Authentication failed!');
-                }
-                });
-*/
-            //this.auth()
-            /*
-            var basicAuth = require('basic-auth');
-            var LdapAuth = require('ldapauth-fork');
-
-            var ldap = new LdapAuth({
-                url: 'ldaps://ldaps.edp.pt:636',
-                bindDN: 'cn=sadtpoweradp01,ou=SISTEMA,dc=edp,dc=pt',
-                bindCredentials: 'ReO1357$1',
-                searchBase: 'OU=DGU,OU=EDP,DC=edp,DC=pt',
-                searchFilter: '(cn={{e346549}})',
-                reconnect: true,
-                });
-
-            var rejectBasicAuth = function (res) {
-                res.statusCode = 401;
-                res.setHeader('WWW-Authenticate', 'Basic realm="Example"');
-                res.end('Access denied');
-                };
-
-            var basicAuthMiddleware = function (req, res, next) {
-                var credentials = basicAuth(req);
-                if (!credentials) {
-                    return rejectBasicAuth(res);
-                }
-            }
-
-
-            ldap.authenticate("e346549", 'DIPlogic-1.3', function (err, user) {
-                if (err) {
-                    return rejectBasicAuth(res);
-                }
-
-                req.user = user;
-                next();
-            });
-            */
-            //LDAP.
-
-            //alert("You are now logged in" + this.password);
-            //Create Cookie
-            this.$cookies.set("pint-user",{
-                "authenticated": true,
-                "username": this.username,
-                "password": this.password,
-            })
+            auth(this.username,this.password)
+                .then (run => {
+                    if (run.data.login_result == 'OK') {    
+                        this.$cookies.set("pint-user",{
+                            "authenticated": true,
+                            "username": this.username,
+                            "password": this.password,
+                        })
+                        this.$router.push({ path: '/' })         
+                    } else {
+                        this.$cookies.set("pint-user",{
+                            "authenticated": false,
+                        })
+                        this.$router.push({ path: '/accessdenied' })  
+                    }
+                });  
          }
 
-        this.$router.push({ path: '/' })         
 
       }
     },
     mounted(){
-        console.log("Entrei LoginPage.vue")
-        console.log("Sai LoginPage.vue")
+        console.log("Mounted LoginPage.vue")
     }        
 }
 </script>

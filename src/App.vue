@@ -44,8 +44,8 @@ export default {
                 {
                     label: 'GBA',
                     items: [
-                        {label: 'Interfaces', icon: 'pi pi-fw pi-sitemap', to: '', target: '_blank'},
-                        {label: 'API Products', icon: 'pi pi-fw pi-wallet', to: '', target: '_blank'},
+                        {label: 'Interfaces', icon: 'pi pi-fw pi-sitemap', to: '/accessdenied', target: '_blank>'},
+                        {label: 'API Products', icon: 'pi pi-fw pi-wallet', to: '', target: '_blank>'},
                         
                     ]
                 },

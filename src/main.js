@@ -112,6 +112,13 @@ router.beforeEach(function(to, from, next) {
 
 const app = createApp(AppWrapper);
 
+// Import Buffer and export as global variable
+
+let Buffer = require('buffer').Buffer;
+
+window.Buffer = window.Buffer || Buffer;
+
+app.config.globalProperties.Buffer = window.Buffer || Buffer;
 app.config.globalProperties.$appState = reactive({ theme: 'edp-marine-blue', darkTheme: true });
 
 app.use(VueCookies, {expires: "1h"})
